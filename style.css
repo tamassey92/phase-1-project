@@ -24,4 +24,6 @@ li {
 }
 #meme-container {
   background-color: #fff;
+  margin: auto;
+  width: 500px;
 }

@@ -2,7 +2,7 @@
 //We need our own db.json to post the comments (so they persist) - Created 4.18.22
 fetch("https://api.imgflip.com/get_memes")
   .then((res) => res.json())
-  .then((json) => getData(json.data.memes.slice(1, 11)));
+  .then((json) => console.log(json.data.memes.slice(1, 11)));
 
 //TO-DO
 //Get data (6-10 memes to display on page) - done 4.19.22
