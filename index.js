@@ -47,7 +47,6 @@ function getData(memes) {
       const newComment = document.createElement("li");
       const ul = document.querySelector("#caption-comment");
       newComment.innerText = e.target.comment.value;
-
       ul.append(newComment);
       form.reset();
       console.log("Caption clicked");
