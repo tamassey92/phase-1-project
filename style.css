@@ -1,26 +1,27 @@
-/* body {
-  background-color:grey;
+body {
+  background-color: grey;
 }
-
 
 h1 {
   text-align: center;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 55px;
-  }
+}
 
 img {
   width: 400px;
   border: 3px solid #000;
-  display:grid;
-  margin:auto;
+  display: grid;
+  margin: auto;
   margin-top: 50px;
   margin-left: auto;
   padding: 10px;
-  background:#fff;
-} */
+  background: #fff;
+}
 
-
-/* li {
-  list-style:none;
-} */
+li {
+  list-style: none;
+}
+#meme-container {
+  background-color: #fff;
+}
