@@ -5,12 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Caption This Meme</title>
- <script src="index.js"></script>
+ <script defer src="index.js"></script>
+ <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Caption This Meme!</h1>
   <div id="meme-container">
-  <img class="meme-image" src="./placeholder" alt="meme" >
+  <img class="meme-image" src="placeholder.png" alt="meme" >
   </div>
   <div>
   <span id="likes">0 Likes</span>
@@ -20,7 +21,7 @@
   <ul id="caption-comment">
   </ul>
   </div>
-  <form>
+  <form id="caption-form">
   <input type="text" name="comment" id="email" />
   <input type="submit" value="Caption!">
 </form>
