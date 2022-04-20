@@ -6,28 +6,30 @@ fetch("https://api.imgflip.com/get_memes")
 
 //TO-DO
 //Get data (6-10 memes to display on page) - done 4.19.22
-//Each Meme should have its own like button & form submit(caption!)
-//Persist added comments/captions by using POST method to the db.json file we created
+//Each Meme should have its own like button & form submit(caption!) -done 4.19.22
+//Persist added comments/captions by using POST method to the db.json file we created - work in progress 4.20.22
 
-//Use array iteration to get data from our API onto our page. The data should have the meme image/url only.
+//Use array iteration to get data from our API onto our page. The data should have the meme image/url.
 function getData(memes) {
   memes.forEach((meme) => {
     const image = document.createElement("img");
     const container = document.querySelector("#meme-container");
     image.src = meme.url;
     container.append(image);
-
+    //create like button forEach meme
     const span = document.createElement("span");
     const btn = document.createElement("button");
     span.innerText = "0 likes";
     btn.innerText = "Like";
-    container.append(span, btn);
 
+    const ul = document.createElement("ul");
+    container.append(span, btn, ul);
+    //add event listener to each meme's button with event that counts up for each click
     btn.addEventListener("click", () => {
       const count = parseInt(span.innerText);
       span.innerText = count + 1 + " likes";
     });
-
+    //create form forEach meme
     const form = document.createElement("form");
     form.setAttribute("method", "post");
     form.setAttribute("action", "submit.php");
@@ -41,35 +43,31 @@ function getData(memes) {
     container.append(form);
     form.appendChild(input);
     form.appendChild(submit);
-
+    //add event listener on form submit, event will create new comment and append it to that meme's ul
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const newComment = document.createElement("li");
-      const ul = document.querySelector("#caption-comment");
       newComment.innerText = e.target.comment.value;
       ul.append(newComment);
       form.reset();
       console.log("Caption clicked");
+      //PERSIST comments by using POST to db.json
+
+      const id = meme.id;
+      const commentsObj = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          memeId: `${id}`,
+          // content: `${newComment}`,
+        }),
+      };
+      fetch(`http://localhost:3000/comments`, commentsObj)
+        .then((res) => res.json())
+        .then((object) => object);
     });
   });
 }
-
-//Like button should increment count by 1 each time it is clicked - Partially Done 4.18.22 (Will need to ensure this works for each meme on the page)
-
-// const likeBtn = document.querySelector("button");
-// likeBtn.addEventListener("click", () => {
-//   const likes = document.getElementById("likes");
-//   const count = parseInt(likes.innerText);
-//   likes.innerText = count + 1 + " likes";
-// });
-
-// //Form Submit should append new comment/caption to the ul underneath the specified meme - Partially Done 4.18.22(Will need to ensure this works for each meme on the page)
-// const form = document.querySelector("#caption-form");
-// form.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   const newComment = document.createElement("li");
-//   const ul = document.querySelector("#caption-comment");
-//   newComment.innerText = e.target.comment.value;
-//   ul.append(newComment);
-//   form.reset();
-// });
