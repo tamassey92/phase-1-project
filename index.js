@@ -26,10 +26,16 @@ function getData(memes) {
     span.innerText = "0 likes";
     btn.innerText = "Like";
 
-    // const favSpan = document.createElement('span')
-    // const favBtn = document.createElement('button')
-    // favSpan.innerText = 'Favorite'
-    // favBtn.innerText =
+    image.addEventListener("mouseover", () => {
+      image.style.width = "500px";
+    });
+
+    // const favSpan = document.createElement("span");
+    // const favBtn = document.createElement("button");
+    // favSpan.innerText = "Favorite";
+    // favBtn.innerHTML = <i class="fa-solid fa-star"></i>;
+
+    // favSpan.append(favBtn);
 
     const ul = document.createElement("ul");
 
@@ -87,7 +93,3 @@ function getData(memes) {
     });
   });
 }
-
-// window.addEventListener("scroll", (event) => {
-//   console.log("Scrolling...");
-// });
