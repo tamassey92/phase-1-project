@@ -41,6 +41,7 @@ li {
   background-color: #fff;
   margin: auto;
   width: 600px;
+  border: #000;
 }
 
 .like-container {
@@ -55,9 +56,8 @@ li {
 }
 
 .like-btn:hover {
-  background-color: white;
+  background-color: magenta;
   border: 4px;
-  opacity: 0.6;
 }
 .comment-section {
   cursor: pointer;
@@ -66,12 +66,14 @@ li {
   background: #eee;
   font-size: 18px;
   transition: 0.2s;
+  height: 80px;
 }
 
 .form-container {
   text-align: right;
   margin-top: 10px;
   margin-right: 8px;
+  margin-bottom: 20px;
 }
 /* 
 form {

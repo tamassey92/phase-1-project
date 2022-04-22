@@ -2,7 +2,7 @@
 //We need our own db.json to post the comments (so they persist) - Created 4.18.22
 fetch("https://api.imgflip.com/get_memes")
   .then((res) => res.json())
-  .then((json) => getData(json.data.memes.slice(1, 11)));
+  .then((json) => getData(json.data.memes.slice(1, 90)));
 
 //TO-DO
 //Get data (6-10 memes to display on page) - done 4.19.22
@@ -23,13 +23,15 @@ function getData(memes) {
     span.className = "like-container";
     btn.className = "like-btn";
 
-    span.innerText = "0 likes";
+    span.innerText = "0 likes   ";
     btn.innerText = "Like";
 
     image.addEventListener("mouseover", () => {
       image.style.width = "500px";
     });
-
+    image.addEventListener("mouseout", () => {
+      image.style.width = "350px";
+    });
     // const favSpan = document.createElement("span");
     // const favBtn = document.createElement("button");
     // favSpan.innerText = "Favorite";
@@ -45,7 +47,7 @@ function getData(memes) {
     //add event listener forEach meme's button with event that counts up for each click
     btn.addEventListener("click", () => {
       const count = parseInt(span.innerText);
-      span.innerText = count + 1 + " likes";
+      span.innerText = count + 1 + " likes ";
     });
     //create form forEach meme
     const form = document.createElement("form");
@@ -71,25 +73,29 @@ function getData(memes) {
       newComment.className = "comment-section";
       newComment.innerText = e.target.comment.value;
       ul.append(newComment);
+      postComment(id, e.target.comment.value);
       form.reset();
       console.log("Caption clicked");
-      //PERSIST comments by using POST to db.json
-
-      const id = meme.id;
-      const commentsObj = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          memeId: id,
-          content: newComment.innerText,
-        }),
-      };
-      fetch(`http://localhost:3000/comments`, commentsObj)
-        .then((res) => res.json())
-        .then((object) => object);
     });
   });
 }
+//PERSIST comments by using POST to db.json - attempted but would not persist.
+
+//       const id = meme.id;
+//       const commentsObj = {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Accept: "application/json",
+//         },
+//         body: JSON.stringify({
+//           memeId: id,
+//           content: newComment.innerText,
+//         }),
+//       };
+//       fetch(`http://localhost:3000/comments`, commentsObj)
+//         .then((res) => res.json())
+//         .then((object) => object);
+//     });
+//   });
+// }
